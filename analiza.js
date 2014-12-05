@@ -37,29 +37,53 @@ function preberi () {
 		
 		if (opX) {
 			if (opY)
-				enako.push([x, y]);
+				enako.push({x: x, y: y});
 			else
-				levi_deref.push([x, y]);
+				levi_deref.push({x: x, y: y});
 		} else if (opY == '*')
-			desni_deref.push([x, y])
+			desni_deref.push({x: x, y: y})
 		else if (opY == '&')
-			naslov.push([x, y]);
+			naslov.push({x: x, y: y});
 		else
-			enako.push([x, y]);
+			enako.push({x: x, y: y});
 	}
 }
 
 function andersen () {
 	preberi ();
 
-	var kaze_na = new Array(spremenljivke.length);
+	var deref = new Array(spremenljivke.length);
 	
-	for (var i = 0; i < kaze_na.length; i++)
-		kaze_na[i] = [];
-	
+	for (var i = 0; i < deref.length; i++)
+		deref[i] = {};
+
+	for (var i = 0; i < naslov.length; i++) {
+		x = naslov[i].x;
+		y = naslov[i].y;
+
+		deref[x][y] = true;
+	}
+
 	var sprememba = false;
 	
 	while (sprememba) {
+		for (var i = 0; i < enako.length; i++) {
+			x = naslov[i].x;
+			y = naslov[i].y;
+
+			for ()
+		}
 		
+		for (var i = 0; i < desni_deref.length; i++) {
+			x = naslov[i].x;
+			y = naslov[i].y;
+
+		}
+		
+		for (var i = 0; i < levi_deref.length; i++) {
+			x = naslov[i].x;
+			y = naslov[i].y;
+
+		}
 	}
 }
