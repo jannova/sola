@@ -3,12 +3,10 @@ var stavki;
 var simbol_spremenljivka = {};
 var spremenljivka_simbol = [];
 
-var operacije = Object.freeze ({
-	enako : 0,
-	levi_deref : 1,
-	desni_deref : 2,
-	naslov : 3
-})
+var enako = [];
+var levi_deref = [];
+var desni_deref = [];
+var naslov = [];
 
 function dodaj_simbol (simbol) {
 	var zadetek = simbol_spremenljivka[simbol]
@@ -18,7 +16,7 @@ function dodaj_simbol (simbol) {
 	else {
 		var naslednja = spremenljivka.length;
 		simbol_spremenljivka[simbol] = naslednja;
-		spremenljivka_simbol[naslednja] = simbol;
+		spremenljivka_simbol.push(simbol);
 		return naslednja;
 	}
 }
@@ -37,9 +35,17 @@ function preberi () {
 		x = dodaj_simbol(x);
 		y = dodaj_simbol(y);
 		
-		
-		
-		stavki[stavki.lenght] = [x, y, op];
+		if (opX) {
+			if (opY)
+				enako.push([x, y]);
+			else
+				levi_deref.push([x, y]);
+		} else if (opY == '*')
+			desni_deref.push([x, y])
+		else if (opY == '&')
+			naslov.push([x, y]);
+		else
+			enako.push([x, y]);
 	}
 }
 
