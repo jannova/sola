@@ -54,8 +54,12 @@ function andersen () {
 
 	var deref = new Array(spremenljivke.length);
 	
-	for (var i = 0; i < deref.length; i++)
-		deref[i] = {};
+	for (var i = 0; i < deref.length; i++) {
+		deref[i] = new Array(spremenljivke.length);
+		
+		for (var j = 0; j < spremenljivke.length; j++)
+			deref[i][j] = false;
+	}
 
 	for (var i = 0; i < naslov.length; i++) {
 		x = naslov[i].x;
@@ -71,8 +75,9 @@ function andersen () {
 			x = naslov[i].x;
 			y = naslov[i].y;
 
-			for ()
-		}
+		for (var j = 0; j < spremenljivke.lenght; j++)
+			if (deref[x][j] && !deref[j][y])
+				deref[]
 		
 		for (var i = 0; i < desni_deref.length; i++) {
 			x = naslov[i].x;
