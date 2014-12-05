@@ -1,0 +1,79 @@
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Varela+Round">
+
+<style>
+	body {
+		font-family: "Varela Round", sans-serif;
+	}
+
+	ul.kazalo {
+		padding: 0 0;
+		padding-left: 50px;
+		width: 200px;
+		list-style: none;
+		text-align: center;
+	}
+
+	ul.kazalo li {
+		padding: 20px 0;
+		margin: 5px 0;
+		opacity: 0.8;
+		background-color: pink;
+		border-radius: 50%;
+	}
+
+	ul.kazalo li:hover {
+		opacity: 1;
+	}
+
+	ul.kazalo li a {
+		color: black;
+		text-decoration: none;
+	}
+
+	footer {
+		position: absolute;
+		bottom: 0px;
+	}
+
+	iframe {
+		position: absolute;
+		left: 300px;
+		top: 0px;
+		width: calc(100% - 300px);
+		height: 100%;
+		border: none;
+	}
+</style>
+
+</head>
+
+<body>
+	<ul class="kazalo" style="padding-left:0px;">
+		<li>O meni</li>
+		<li>Biologija</li>
+		<ul class="kazalo">
+			<li>Nutrije ob Ljubljanici</li>
+			<li>Morska prašička</li>
+		</ul>
+		<li>Analiza kazalčnih spremenljivk</li>
+		<ul class="kazalo">
+			<li><a target="jedro">Andersen</a></li>
+			<li><a target="jedro">Steengaard</a></li>
+		</ul>
+	</ul>
+
+	<iframe name="jedro" src="points_to_graf.html">
+	</iframe>
+
+	<footer>
+		Klemen Jan Enova, december 2014
+	</footer>
+</body>
+
+</html>
