@@ -67,7 +67,7 @@ function pripravi_kazalno_tabelo () {
 	}
 	
 	for (var s = 0; s < stavki.length; s++) /* x = &y */
-		if (stavki[s].x_stopnja == 1 && stavki[s].y_stopnja = 0) {
+		if (stavki[s].x_stopnja == 1 && stavki[s].y_stopnja == 0) {
 			kazalna_tabela[stavki[s].x][stavki[s].y] = true;
 			stavki[s] = undefined;
 		}
