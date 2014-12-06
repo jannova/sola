@@ -3,6 +3,15 @@ var tabela_spremenljivka_ime = [];
 
 var stavki = [];
 
+var Stavek (x_stopnja, x, y_stopnja, y) {
+	this.x_stopnja = x_stopnja;
+	this.x = x;
+	this.y_stopnja = y_stopnja;
+	this.y = y;
+	
+	return this;
+}
+
 function dodaj_ime (ime) {
 	var naslednja_spremenljivka = tabela_spremenljivka_ime.length;
 	tabela_ime_spremenljivka[ime] = naslednja_spremenljivka;
@@ -32,9 +41,9 @@ function prevedi_sintakso () {
 		if (y === undefined)
 			y = dodaj_ime (y_ime)
 		
-		var leva_stopnja = (sintakticni_elementi[1])? sintakticni_elementi[1].length : 1;
-		var desna_stopnja = (sintakticni_elementi[4])? 0 : ((sintakticni_elementi[3])? sintakticni_elementi[3].length : 1);
+		var x_stopnja = (sintakticni_elementi[1])? sintakticni_elementi[1].length : 1;
+		var y_stopnja = (sintakticni_elementi[4])? 0 : ((sintakticni_elementi[3])? sintakticni_elementi[3].length : 1);
 
-		stavki.push([leva_stopnja, x, desna_stopnja, y]);
+		stavki.push(new Stavek(x_stopnja, x, y_stopnja, y));
 	}
 }
