@@ -205,7 +205,7 @@ Najprej definiramo sintakso. Naj #(x, n) pomeni unijo n-tih podmnožic dosedanji
 ... in tako najprej!
 <br>
 <br>
-Regex za stavek je <pre class="regex">\s*([\*]?)\s*(\w+)\s*=\s*([\*]?)(&?)\s*(\w+)</pre>Velja le še to, da tretji in četrti sintaktični element ne smeta nastopati hkrati. Stavek tako dobimo v obliki #(x, n) = #(y, m), kjer je n enak številu operatorjev* (sintaktični element 1) + 1 pred simbolom za prvo spremenljivko (sintaktični element 2) in m = 0, če je četrti sintaktični element prisoten, drugače pa enako kot pri n.
+Regex za stavek je <pre class="regex">\s*([\*]*)\s*(\w+)\s*=\s*([\*]*)(&?)\s*(\w+)</pre>Velja le še to, da tretji in četrti sintaktični element ne smeta nastopati hkrati. Stavek tako dobimo v obliki #(x, n) = #(y, m), kjer je n enak številu operatorjev* (sintaktični element 1) + 1 pred simbolom za prvo spremenljivko (sintaktični element 2) in m = 0, če je četrti sintaktični element prisoten, drugače pa enako kot pri n.
 
 <script>
 	RegexColorizer.addStyleSheet();
