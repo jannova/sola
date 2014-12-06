@@ -148,5 +148,5 @@ function narisi_graf () {
 			if (kazalna_tabela[i][j])
 				povezave.push({data: {source: i.toString(), target: j.toString()}});
 	
-	$('#cy').cytoscape ({elements:{nodes: vozlisca, edges: povezave}})
+	cytoscape ({container: document.getElementById("cy"), elements:{nodes: vozlisca, edges: povezave}})
 }
