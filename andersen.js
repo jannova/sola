@@ -138,7 +138,7 @@ function narisi_graf () {
 	var vozlisca = new Array(tabela_spremenljivka_ime.length);
 	var povezave = [];
 	
-	for (var i = 0; i < tabela_spremenljivka_ime.length)
+	for (var i = 0; i < tabela_spremenljivka_ime.length; i++)
 		vozlisca[i] = {data: {id: i, name: tabela_spremenljivka_ime[i]}};
 	
 	for (var i = 0; i < kazalna_tabela.length; i++)
