@@ -130,4 +130,21 @@ function andersen () {
 			if (stavki[s])
 				sprememba = rekurzivno_zdruzevanje (stavki[s].x, stavki[s].x_stopnja, unija (stavki[s].y, stavki[s].y_stopnja))
 	}
+	
+	narisi_graf ();
+}
+
+function narisi_graf () {
+	var vozlisca = new Array(tabela_spremenljivka_ime.length);
+	var povezave = [];
+	
+	for (var i = 0; i < tabela_spremenljivka_ime.length)
+		vozlisca[i] = {data: {id: i, name: tabela_spremenljivka_ime[i]}};
+	
+	for (var i = 0; i < kazalna_tabela.length; i++)
+		for (var j = 0; j < kazalna_tabela.length; j++)
+			if (kazalna_tabela[i][j])
+				povezave.push({data: {source: i, target: j}});
+	
+	$('#cy').cytoscape ({elements:{nodes: vozlisca, edges: povezave}})
 }
