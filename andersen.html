@@ -15,6 +15,15 @@
 			width: 200px;
 			background-color: pink;
 		}
+		
+		table, th, td {
+			border: 1px solid rgba(48, 57, 150, 0.9);
+			border-collapse: collapse;
+		}
+		
+		th, td {
+			padding: 15px;
+		}
 	</style>
 </head>
 
@@ -179,16 +188,16 @@ Najprej definiramo sintakso. Naj #(x, n) pomeni unijo n-tih podmnožic dosedanji
 
 <table>
 	<tr>
-		<tc>#(x, 0)</tc><tc>&x</tc>
+		<td>#(x, 0)</td><td>&x</td>
 	</tr>
 	<tr>
-		<tc>#(x, 1)</tc><tc>x</tc>
+		<td>#(x, 1)</td><td>x</td>
 	</tr>
 	<tr>
-		<tc>#(x, 2)</tc><tc>*x</tc>
+		<td>#(x, 2)</td><td>*x</td>
 	</tr>
 	<tr>
-		<tc>#(x, 3)</tc><tc>**x</tc>
+		<td>#(x, 3)</td><td>**x</td>
 	</tr>
 <table>
 
