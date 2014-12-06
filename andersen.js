@@ -27,7 +27,7 @@ function prevedi_sintakso () {
 		var sintakticni_elementi = /\s*([\*]?)\s*(\w+)\s*=\s*([\*]?)(&?)\s*(\w+)/.exec(goli_stavki[i]);
 		
 		if (!sintakticni_elementi || (sintakticni_elementi[3] && sintakticni_elementi[4]))
-			throw new Error("sintakticna napaka na stavku" + (i + 1));
+			throw new Error("sintakticna napaka v stavku" + (i + 1));
 
 		var naslednja_spremenljivka = tabela_spremenljivka_ime.length;
 
@@ -45,6 +45,8 @@ function prevedi_sintakso () {
 		var y_stopnja = (sintakticni_elementi[4])? 0 : ((sintakticni_elementi[3])? sintakticni_elementi[3].length : 1);
 
 		stavki.push(new Stavek(x_stopnja, x, y_stopnja, y));
+		
+		console.log (stavki[stavki.length - 1]);
 	}
 }
 
@@ -67,7 +69,7 @@ function pripravi_kazalno_tabelo () {
 	}
 	
 	for (var s = 0; s < stavki.length; s++) /* x = &y */
-		if (stavki[s].x_stopnja == 1 && stavki[s].y_stopnja == 0) {
+		if (stavki[s] && stavki[s].x_stopnja == 1 && stavki[s].y_stopnja == 0) {
 			kazalna_tabela[stavki[s].x][stavki[s].y] = true;
 			stavki[s] = undefined;
 		}
