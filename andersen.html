@@ -77,8 +77,7 @@ Primer:
 <ul class="koda">
 	<li>y = &a</li>
 	<li>y = &b</li>
-	<br>
-	<li>x = y</li>
+	<li style="background-color:red">x = y</li>
 </ul>
 
 [y, i] = {a, b}
@@ -102,8 +101,7 @@ Zmenimo se, da bomo najprej obravnavali vse stavke x = y. Za vsak [i, j], kjer j
 Primer:
 
 <ul class="koda">
-	<li>a = &c</li>
-	<br>
+	<li style="background-color:red">a = &c</li>
 	<li>y = &a</li>
 	<li>y = &b</li>
 	<li>x = *y</li>
@@ -165,8 +163,7 @@ Primer:
 	<li>x = &b</li>
 	<li>y = &c</li>
 	<li>y = &d</li>
-	<br>
-	<li>*x = y</li>
+	<li style="background-color:red">*x = y</li>
 </ul>
 
 [x, i]: {a, b}<br>
@@ -185,7 +182,7 @@ Ok, to je preveč zakomplicirano!
 <h2>Kako se to zdaj sploh naredi??</h2>
 
 Najprej definiramo sintakso. Naj #(x, n) pomeni unijo n-tih podmnožic dosedanjih <i>points-to</i> možnosti za x.
-
+<br>
 <table>
 	<tr>
 		<td>#(x, 0)</td><td>&x</td>
@@ -200,13 +197,13 @@ Najprej definiramo sintakso. Naj #(x, n) pomeni unijo n-tih podmnožic dosedanji
 		<td>#(x, 3)</td><td>**x</td>
 	</tr>
 <table>
-
+<br>
 ... in tako najprej!
 <br>
 Regex za stavek je <i style="color:orange">/\s*([\*]?)\s*(\w+)\s*=\s*([\*]?)(&?)\s*(\w+)/</i>. Velja le še to, da tretji in četrti sintaktični element ne smeta nastopati hkrati. Stavek tako dobimo v obliki #(x, n) = #(y, m), kjer je n enak številu operatorjev* (sintaktični element 1) + 1 pred simbolom za prvo spremenljivko (sintaktični element 2) in m = 0, če je četrti sintaktični element prisoten, drugače pa enako kot pri n.
 
 Nekaj primerov:
-
+<br>
 <table style="background-color:pink;">
 	<tr>
 		<td>x = &y</td><td>#(x, 1) = #(y, 0)</td>
@@ -224,7 +221,7 @@ Nekaj primerov:
 		<td>*x = *y</td><td>#(x, 2) = #(y, 2)</td>
 	</tr>
 </table>
-
+<br>
 Očitno bomo potrebovali neke rekurzivne funkcije. Najprej bomo izračunali #(y, m), nato pa vsaki n-ti podmnožici x-a dodali #(y, m) (podmnožica x-a = podmnožica x-a U #(y, m)). Na začetku bomo naredili tabelo velikosti s*s, kjer je s število spremenljivk. Nato bomo s pomočjo te tabele naredili graf (glej: <a href="http://sl.wikipedia.org/wiki/Matrika_sosednosti">matrika sosednjosti</a>).
 </body>
 </html>
