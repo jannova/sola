@@ -107,8 +107,7 @@ function andersen () {
 		sprememba = false;
 		
 		for (var s = 0; s < stavki.length; s++)
-			if (stavki[s]) {
-				var unija_y_stopnje = unija (stavki[s].y, stavki[s].y_stopnja);
-			}
+			if (stavki[s])
+				sprememba = zdruzi (stavki[s].x, stavki[s].y, unija (stavki[s].y, stavki[s].y_stopnja))
 	}
 }
