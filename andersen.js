@@ -3,7 +3,7 @@ var tabela_spremenljivka_ime = [];
 
 var stavki = [];
 
-var Stavek (x_stopnja, x, y_stopnja, y) {
+function Stavek (x_stopnja, x, y_stopnja, y) {
 	this.x_stopnja = x_stopnja;
 	this.x = x;
 	this.y_stopnja = y_stopnja;
