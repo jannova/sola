@@ -26,6 +26,8 @@ function prevedi_sintakso () {
 	for (var i = 0; i < goli_stavki.length; i++) {
 		var sintakticni_elementi = /\s*([\*]?)\s*(\w+)\s*=\s*([\*]?)(&?)\s*(\w+)/.exec(goli_stavki[i]);
 		
+		console.log(sintakticni_elementi);
+		
 		if (!sintakticni_elementi || (sintakticni_elementi[3] && sintakticni_elementi[4]))
 			throw new Error("sintakticna napaka v stavku" + (i + 1));
 
