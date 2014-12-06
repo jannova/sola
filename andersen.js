@@ -50,7 +50,7 @@ function prevedi_sintakso () {
 
 var kazalna_tabela;
 
-function unija (x, y) {
+function zdruzi_s_stolpcem (x, y) {
 	for (var i = 0; i < kazalna_tabela.length)
 		if (kazalna_tabela[y][i])
 			kazalna_tabela[x][i] = true;
@@ -74,9 +74,26 @@ function pripravi_kazalno_tabelo () {
 	
 	for (var s = 0; s < stavki.length; s++)
 		if (stavki[s] && stavki[s].x_stopnja == 1 && stavki[s].y_stopnja == 1) {
-			unija (stavki[s].x, stavki[s].y);
+			zdruzi_s_stolpcem (stavki[s].x, stavki[s].y);
 			stavki[s] = undefined;
 		}
+}
+
+function rekurzivna_unija (unija, a, stopnja) {
+	if (!stopnja) {
+		for (var i = 0; i < kazalna_tabela.length; i++)
+			if (kazalna_tabela[a][i])
+				unija[i] = true;
+	} else {
+		for (var i = 0; i < kazalna_tabela.length; i++)
+			if (kazalna_tabela[a][i]
+	}
+}
+
+function unija (a, stopnja) {
+	var unija;
+	rekurzivna_unija (unija, a, stopnja);
+	return unija;
 }
 
 function andersen () {
@@ -88,6 +105,9 @@ function andersen () {
 	while (sprememba) {
 		sprememba = false;
 		
-		for ()
+		for (var s = 0; s < stavki.length; s++)
+			if (stavki[s]) {
+				var unija_y_stopnje = unija (stavki[s].y, stavki[s].y_stopnja);
+			}
 	}
 }
