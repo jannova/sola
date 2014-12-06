@@ -34,7 +34,7 @@ function prevedi_sintakso () {
 		var x_ime = sintakticni_elementi[2];
 		var y_ime = sintakticni_elementi[5];
 		var x = tabela_ime_spremenljivka[x_ime];
-		var y = tabela_ime_spremenljivka[y_ime;
+		var y = tabela_ime_spremenljivka[y_ime];
 		
 		if (x === undefined)
 			x = dodaj_ime (x_ime);
