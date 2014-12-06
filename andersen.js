@@ -80,14 +80,15 @@ function pripravi_kazalno_tabelo () {
 }
 
 function rekurzivna_unija (unija, a, stopnja) {
-	if (!stopnja) {
+	if (stopnja)
+		for (var i = 0; i < kazalna_tabela.length; i++)
+			if (kazalna_tabela[a][i])
+				rekurzivna_unija (unija, i, stopnja - 1);
+	else
 		for (var i = 0; i < kazalna_tabela.length; i++)
 			if (kazalna_tabela[a][i])
 				unija[i] = true;
-	} else {
-		for (var i = 0; i < kazalna_tabela.length; i++)
-			if (kazalna_tabela[a][i]
-	}
+
 }
 
 function unija (a, stopnja) {
