@@ -52,22 +52,18 @@ Tukaj se vrednost a-ja ne spremeni. Analizi, ki vzame vrstni red vzakup rečemo,
 
 <h2>Naiven algoritem in zakaj ta ne deluje na splošni sintaksi</h2>
 
-Ugotavljamo za nek x in y, če je lahko v nekem zaporedju *...*x = y. Kako bomo to zapisovali? S tabelo, pri kateri P v okvirčku (x, y) pomeni, da je *x lahko v nekem zaporedju y. Če je *y lahko v nekem zaporedju z, je torej tudi **x lahko enako z (ne glede na to, če se x kadarkoli dvakrat dereferencira, z je pač v nekem zaporedju dostopen iz x).
-
-Naj "[x, y]" pomeni "(x, y) = P" ali "(x, y) := P", odvisno od konteksta.
-
+Ugotavljamo za nek x in y, če je lahko v nekem zaporedju *...*x = y. Kako bomo to zapisovali? S tabelo, pri kateri P v okvirčku (x, y) pomeni, da je *x lahko v nekem zaporedju y. Če je *y lahko v nekem zaporedju z, je torej tudi **x lahko enako z (ne glede na to, če se x kadarkoli dvakrat dereferencira, z je pač v nekem zaporedju dostopen iz x). Naj "[x, y]" pomeni "(x, y) = P" ali "(x, y) := P", odvisno od konteksta.
+<br>
 Zanima nas, kaj se zgodi ob teh stavkih:
 
 <h3>x = &y</h3>
 
-Enostavno. Naj bo [x, y].
-
-Iz x = &y sledi *x = y, kar označujemo z [x, y]. &#8718
+Enostavno. Naj bo [x, y]. Iz x = &y sledi *x = y, kar označujemo z [x, y]. &#8718
 
 <h3>x = y</h3>
 
 Zmenimo se, da bomo najprej obravnavali vse stavke x = &y. Enostavno. Povsod, kjer je [y, i], naj bo tudi [x, i].
-
+<br>
 Primer:
 <ul class="koda">
 	<li>y = &a</li>
@@ -77,23 +73,15 @@ Primer:
 </ul>
 
 [y, i] = {a, b}
-
+<br>
 <b>[x, a], [x, b]</b>
-
+<br>
 Saj obstajata vrstna reda:
 
 <ul class="koda">
-	<li>y = &a</li>
+	<li>y = &{a, b}</li>
 	<li>x = y</li>
-	<li>y = &b</li>
-</ul>
-
-in
-
-<ul class="koda">
-	<li>y = &b</li>
-	<li>x = y</li>
-	<li>y = &a</li>
+	<li>y = &{b, a}</li>
 </ul>
 
 &#8718
@@ -101,7 +89,7 @@ in
 <h3>x = *y</h3>
 
 Zmenimo se, da bomo najprej obravnavali vse stavke x = y. Za vsak [i, j], kjer je [y, i], naj bo tudi [x, j].
-
+<br>
 Primer:
 
 <ul class="koda">
@@ -112,11 +100,11 @@ Primer:
 	<li>x = *y</li>
 </ul>
 
-[y, i]: {a, b}
+[y, i]: {a, b}<br>
 [i, j]: {c}
-
+<br>
 <b>[x, c]</b>
-
+<br>
 Saj obstaja vrstni red:
 
 <ul class="koda">
@@ -127,8 +115,9 @@ Saj obstaja vrstni red:
 </ul>
 
 Kar je podobno:
-
-x = a
+<ul class="koda">
+	<li>x = a</li>
+</ul>
 
 Vrednost od a-ja pa je &c, torej je *x lahko = c, kar zapišemo kot [x, c]. &#8718
 
@@ -144,19 +133,17 @@ Za vsak [x, i] naj bo tudi [i, y].
 
 [y, a], [y, b]
 
-Saj vrstni red (^ pomeni xor):
+Saj obstaja vrstni red:
 
 <ul class="koda">
-	<li>x = &{a ^ b}</li>
+	<li>x = &{a, b}</li>
 	<li>*x = &y</li>
-	<li>x = &{a ^ b}</li>
+	<li>x = &{a, b}</li>
 </ul>
 
 torej:
-
-[a, y], [b, y]
-
-&#8718
+<br>
+[a, y], [b, y] &#8718
 
 <h3>*x = y</h3>
 
@@ -173,8 +160,8 @@ Primer:
 	<li>*x = y</li>
 </ul>
 
-[x, i]: {a, b}
-[y, j]: {c, d}
+[x, i]: {a, b}<br>
+[y, j]: {c, d}<br>
 
 [a, c], [a, d], [b, c], [b, d]
 
@@ -206,8 +193,8 @@ Najprej definiramo sintakso. Naj #(x, n) pomeni unijo n-tih podmnožic dosedanji
 <table>
 
 ... in tako najprej!
-
-Regex za stavek je /\s*([\*]?)\s*(\w+)\s*=\s*([\*]?)(&?)\s*(\w+)/. Velja le še to, da tretji in četrti sintaktični element ne smeta nastopati hkrati. Stavek tako dobimo v obliki #(x, n) = #(y, m), kjer je n enak številu operatorjev* (sintaktični element 1) + 1 pred simbolom za prvo spremenljivko (sintaktični element 2) in m = 0, če je četrti sintaktični element prisoten, drugače pa enako kot pri n.
+<br>
+Regex za stavek je <i style="color:orange">/\s*([\*]?)\s*(\w+)\s*=\s*([\*]?)(&?)\s*(\w+)/</i>. Velja le še to, da tretji in četrti sintaktični element ne smeta nastopati hkrati. Stavek tako dobimo v obliki #(x, n) = #(y, m), kjer je n enak številu operatorjev* (sintaktični element 1) + 1 pred simbolom za prvo spremenljivko (sintaktični element 2) in m = 0, če je četrti sintaktični element prisoten, drugače pa enako kot pri n.
 
 Nekaj primerov:
 
