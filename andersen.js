@@ -51,7 +51,7 @@ function prevedi_sintakso () {
 var kazalna_tabela;
 
 function zdruzi_s_stolpcem (x, y) {
-	for (var i = 0; i < kazalna_tabela.length)
+	for (var i = 0; i < kazalna_tabela.length; i++)
 		if (kazalna_tabela[y][i])
 			kazalna_tabela[x][i] = true;
 }
@@ -66,13 +66,13 @@ function pripravi_kazalno_tabelo () {
 			kazalna_tabela[i][j] = false;
 	}
 	
-	for (var s = 0; s < stavki.length; s++)
+	for (var s = 0; s < stavki.length; s++) /* x = &y */
 		if (stavki[s].x_stopnja == 1 && stavki[s].y_stopnja = 0) {
 			kazalna_tabela[stavki[s].x][stavki[s].y] = true;
 			stavki[s] = undefined;
 		}
 	
-	for (var s = 0; s < stavki.length; s++)
+	for (var s = 0; s < stavki.length; s++) /* x = y */
 		if (stavki[s] && stavki[s].x_stopnja == 1 && stavki[s].y_stopnja == 1) {
 			zdruzi_s_stolpcem (stavki[s].x, stavki[s].y);
 			stavki[s] = undefined;
