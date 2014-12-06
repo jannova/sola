@@ -24,9 +24,7 @@ function prevedi_sintakso () {
 	var goli_stavki = document.getElementById("vnosno_polje_za_kodo").value.split('\n');
 	
 	for (var i = 0; i < goli_stavki.length; i++) {
-		var sintakticni_elementi = /\s*([\*]?)\s*(\w+)\s*=\s*([\*]?)(&?)\s*(\w+)/.exec(goli_stavki[i]);
-		
-		console.log(sintakticni_elementi);
+		var sintakticni_elementi = /\s*([\*]*)\s*(\w+)\s*=\s*([\*]*)(&?)\s*(\w+)/.exec(goli_stavki[i]);
 		
 		if (!sintakticni_elementi || (sintakticni_elementi[3] && sintakticni_elementi[4]))
 			throw new Error("sintakticna napaka v stavku" + (i + 1));
