@@ -1,0 +1,211 @@
+<h2>Uvod</h2>
+
+Analiza kazalčnih spremenljivk nam na primer odgovori na vprašanje "ali je a na koncu kode enak 4":
+
+<ul class="koda">
+	<li>a = 4</li>
+	<li>b = 3</li>
+	<li>p = &b</li>
+	<li>*p = 5</li>
+</ul>
+
+Tukaj je to zelo očitno, saj a-jevega skladovnega naslova nikoli ne vzamemo. Če ga vzamemo z operatorjem& in potem uporabimo operator*, lahko spremenimo njegovo vrednost. Seveda je to odvisno od vrstnega reda izvajanja stavkov:
+
+<ul class="koda">
+	<li>a = 9</li>
+	<li>b = 7</li>
+	<li style="background-color:red;">p = &a</li>
+	<li style="background-color:orange;">p = &b</li>
+	<li>*p = 6</li>
+</ul>
+
+Tukaj se vrednost a-ja ne spremeni. Analizi, ki vzame vrstni red vzakup rečemo, da je <i>flow-sensetive</i>. Ko se pojavijo dodatni bloki kode, ta analiza postane v splošnem zapletena. Zato se bomo ukvarjali s <i>flow-insensetive</i> analizo. Ta nam odgovori na vprašanje: ali obstaja tako zaporedje stavkov, da se vrednost a-ja posredno (preko kazalca) spremeni? V prejšnjem primeru je odgovor 'da'. Tako zaporedje je na primer:
+
+<ul class="koda">
+	<li>a = 9</li>
+	<li>b = 7</li>
+	<li style="background-color:orange;">p = &b</li>
+	<li style="background-color:red;">p = &a</li>
+	<li>*p = 6</li>
+</ul>
+
+<h2>Naiven algoritem in zakaj ta ne deluje na splošni sintaksi</h2>
+
+Ugotavljamo za nek x in y, če je lahko v nekem zaporedju *...*x = y. Kako bomo to zapisovali? S tabelo, pri kateri P v okvirčku (x, y) pomeni, da je *x lahko v nekem zaporedju y. Če je *y lahko v nekem zaporedju z, je torej tudi **x lahko enako z (ne glede na to, če se x kadarkoli dvakrat dereferencira, z je pač v nekem zaporedju dostopen iz x).
+
+Naj "[x, y]" pomeni "(x, y) = P" ali "(x, y) := P", odvisno od konteksta.
+
+Zanima nas, kaj se zgodi ob teh stavkih:
+
+<h3>x = &y</h3>
+
+Enostavno. Naj bo [x, y].
+
+Iz x = &y sledi *x = y, kar označujemo z [x, y]. &#8718
+
+<h3>x = y</h3>
+
+Zmenimo se, da bomo najprej obravnavali vse stavke x = &y. Enostavno. Povsod, kjer je [y, i], naj bo tudi [x, i].
+
+Primer:
+<ul class="koda">
+	<li>y = &a</li>
+	<li>y = &b</li>
+	<br>
+	<li>x = y</li>
+</ul>
+
+[y, i] = {a, b}
+
+<b>[x, a], [x, b]</b>
+
+Saj obstajata vrstna reda:
+
+<ul class="koda">
+	<li>y = &a</li>
+	<li>x = y</li>
+	<li>y = &b</li>
+</ul>
+
+in
+
+<ul class="koda">
+	<li>y = &b</li>
+	<li>x = y</li>
+	<li>y = &a</li>
+</ul>
+
+&#8718
+
+<h3>x = *y</h3>
+
+Zmenimo se, da bomo najprej obravnavali vse stavke x = y. Za vsak [i, j], kjer je [y, i], naj bo tudi [x, j].
+
+Primer:
+
+<ul class="koda">
+	<li>a = &c</li>
+	<br>
+	<li>y = &a</li>
+	<li>y = &b</li>
+	<li>x = *y</li>
+</ul>
+
+[y, i]: {a, b}
+[i, j]: {c}
+
+<b>[x, c]</b>
+
+Saj obstaja vrstni red:
+
+<ul class="koda">
+	<li>y = &b</li>
+	<li>a = &c</li>
+	<li>y = &a</li>
+	<li>x = *y</li>
+</ul>
+
+Kar je podobno:
+
+x = a
+
+Vrednost od a-ja pa je &c, torej je *x lahko = c, kar zapišemo kot [x, c]. &#8718
+
+<h3>*x = &y</h3>
+
+Za vsak [x, i] naj bo tudi [i, y].
+
+<ul class="koda">
+	<li>x = &a</li>
+	<li>x = &b</li>
+	<li>*x = y</li>
+</ul>
+
+[y, a], [y, b]
+
+Saj vrstni red (^ pomeni xor):
+
+<ul class="koda">
+	<li>x = &{a ^ b}</li>
+	<li>*x = &y</li>
+	<li>x = &{a ^ b}</li>
+</ul>
+
+torej:
+
+[a, y], [b, y]
+
+&#8718
+
+<h3>*x = y</h3>
+
+Za vsak [x, i] naj bo tudi [i, j], če je [y, j].
+
+Primer:
+
+<ul class="koda">
+	<li>x = &a</li>
+	<li>x = &b</li>
+	<li>y = &c</li>
+	<li>y = &d</li>
+	<br>
+	<li>*x = y</li>
+</ul>
+
+[x, i]: {a, b}
+[y, j]: {c, d}
+
+[a, c], [a, d], [b, c], [b, d]
+
+<h3>*x = *y</h3>
+
+Za vsak [x, i] naj bo tudi [i, j], če je za nek k [y, k], [k, j], z drugimi besedami: vse podmnožice druge stopnje y-a spravimo v unijo in ...
+
+<h3>*...*x={&* }y</h3>
+
+Ok, to je preveč zakomplicirano!
+
+<h2>Kako se to zdaj sploh naredi??</h2>
+
+Najprej definiramo sintakso. Naj #(x, n) pomeni unijo n-tih podmnožic dosedanjih <i>points-to</i> možnosti za x.
+
+<table>
+	<tr>
+		<tc>#(x, 0)</tc><tc>&x</tc>
+	</tr>
+	<tr>
+		<tc>#(x, 1)</tc><tc>x</tc>
+	</tr>
+	<tr>
+		<tc>#(x, 2)</tc><tc>*x</tc>
+	</tr>
+	<tr>
+		<tc>#(x, 3)</tc><tc>**x</tc>
+	</tr>
+<table>
+
+... in tako najprej!
+
+Regex za stavek je /\s*([\*]?)\s*(\w+)\s*=\s*([\*]?)(&?)\s*(\w+)/. Velja le še to, da tretji in četrti sintaktični element ne smeta nastopati hkrati. Stavek tako dobimo v obliki #(x, n) = #(y, m), kjer je n enak številu operatorjev* (sintaktični element 1) + 1 pred simbolom za prvo spremenljivko (sintaktični element 2) in m = 0, če je četrti sintaktični element prisoten, drugače pa enako kot pri n.
+
+Nekaj primerov:
+
+<table>
+	<tr>
+		<tc>x = &y</tc><tc>#(x, 1) = #(y, 0)</tc>
+	</tr>
+	<tr>
+		<tc>x = y</tc><tc>#(x, 1) = #(y, 1)</tc>
+	</tr>
+	<tr>
+		<tc>x = *y</tc><tc>#(x, 1) = #(y, 2)</tc>
+	</tr>
+	<tr>
+		<tc>*x = y</tc><tc>#(x, 2) = #(y, 1)</tc>
+	</tr>
+	<tr>
+		<tc>*x = *y</tc><tc>#(x, 2) = #(y, 2)</tc>
+	</tr>
+</table>
+
+Očitno bomo potrebovali neke rekurzivne funkcije. Najprej bomo izračunali #(y, m), nato pa vsaki n-ti podmnožici x-a dodali #(y, m) (podmnožica x-a = podmnožica x-a U #(y, m)). Na začetku bomo naredili tabelo velikosti s*s, kjer je s število spremenljivk. Nato bomo s pomočjo te tabele naredili graf (glej: <a href="http://sl.wikipedia.org/wiki/Matrika_sosednosti">matrika sosednjosti</a>).
