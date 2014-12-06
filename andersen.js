@@ -47,3 +47,47 @@ function prevedi_sintakso () {
 		stavki.push(new Stavek(x_stopnja, x, y_stopnja, y));
 	}
 }
+
+var kazalna_tabela;
+
+function unija (x, y) {
+	for (var i = 0; i < kazalna_tabela.length)
+		if (kazalna_tabela[y][i])
+			kazalna_tabela[x][i] = true;
+}
+
+function pripravi_kazalno_tabelo () {
+	kazalna_tabela = new Array(tabela_spremenljivka_ime.length);
+	
+	for (var i = 0; i < kazalna_tabela.length; i++) {
+		kazalna_tabela[i] = new Array(kazalna_tabela.length);
+		
+		for (var j = 0; j < kazalna_tabela.length; j++)
+			kazalna_tabela[i][j] = false;
+	}
+	
+	for (var s = 0; s < stavki.length; s++)
+		if (stavki[s].x_stopnja == 1 && stavki[s].y_stopnja = 0) {
+			kazalna_tabela[stavki[s].x][stavki[s].y] = true;
+			stavki[s] = undefined;
+		}
+	
+	for (var s = 0; s < stavki.length; s++)
+		if (stavki[s] && stavki[s].x_stopnja == 1 && stavki[s].y_stopnja == 1) {
+			unija (stavki[s].x, stavki[s].y);
+			stavki[s] = undefined;
+		}
+}
+
+function andersen () {
+	prevedi_sintakso ();
+	pripravi_kazalno_tabelo ();
+	
+	var sprememba = true;
+	
+	while (sprememba) {
+		sprememba = false;
+		
+		for ()
+	}
+}
