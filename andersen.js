@@ -147,7 +147,7 @@ function narisi_graf () {
 
 	var div_graf = document.getElementById("graf");
 	if (div_graf.childNodes.length == 2)
-		div_graf.removeChild(div_graf.childNodes[0]);
+		div_graf.removeChild(div_graf.childNodes[1]);
 };
 
 function andersen () {
