@@ -151,19 +151,20 @@ function narisi_graf () {
 };
 
 function andersen () {
-	prevedi_sintakso ();
-	pripravi_kazalno_tabelo ();
+	if (prevedi_sintakso ()) {
+		pripravi_kazalno_tabelo ();
 	
-	var sprememba = true;
+		var sprememba = true;
 	
-	while (sprememba) {
-		sprememba = false;
+		while (sprememba) {
+			sprememba = false;
 		
-		for (var s = 0; s < stavki.length; s++)
-			if (stavki[s])
-				sprememba = rekurzivno_zdruzevanje (stavki[s].x, stavki[s].x_stopnja, unija (stavki[s].y, stavki[s].y_stopnja))
+			for (var s = 0; s < stavki.length; s++)
+				if (stavki[s])
+					sprememba = rekurzivno_zdruzevanje (stavki[s].x, stavki[s].x_stopnja, unija (stavki[s].y, stavki[s].y_stopnja))
+		}
 	}
-	
+
 	narisi_graf ();
 }
 
