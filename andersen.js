@@ -1,7 +1,7 @@
-var tabela_ime_spremenljivka = {};
-var tabela_spremenljivka_ime = [];
+var tabela_ime_spremenljivka;
+var tabela_spremenljivka_ime;
 
-var stavki = [];
+var stavki;
 
 function Stavek (x_stopnja, x, y_stopnja, y) {
 	this.x_stopnja = x_stopnja;
@@ -21,6 +21,11 @@ function dodaj_ime (ime) {
 }
 
 function prevedi_sintakso () {
+	tabela_ime_spremenljivka = {};
+	tabela_spremenljivka_ime = [];
+
+	stavki = [];
+
 	var goli_stavki = document.getElementById("vnosno_polje_za_kodo").value.split('\n');
 	
 	for (var i = 0; i < goli_stavki.length; i++) {
