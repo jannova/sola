@@ -131,7 +131,7 @@ var height = 400;
 var width = 400;
 
 function narisi_graf () {
-	var div_graf = document.getElementByID("graf");
+	var div_graf = document.getElementById("graf");
 	var prejsni_graf = (div_graf.childNodes.length)? div_graf.childNodes[0] : undefined;
 
 	if (prejsni_graf)
