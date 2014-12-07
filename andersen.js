@@ -26,7 +26,12 @@ function prevedi_sintakso () {
 
 	stavki = [];
 
-	var goli_stavki = document.getElementById("vnosno_polje_za_kodo").value.split('\n');
+	var koda = document.getElementById("vnosno_polje_za_kodo").value;
+	
+	if (!koda)
+		return;
+	
+	var goli_stavki = koda.split('\n');
 	
 	for (var i = 0; i < goli_stavki.length; i++) {
 		var sintakticni_elementi = /\s*([\*]*)\s*(\w+)\s*=\s*([\*]*)(&?)\s*(\w+)/.exec(goli_stavki[i]);
@@ -161,3 +166,5 @@ function andersen () {
 	
 	narisi_graf ();
 }
+
+document.onload = andersen;
