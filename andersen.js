@@ -126,8 +126,6 @@ var height = 400;
 var width = 400;
 
 function narisi_graf () {
-	document.getElementByID("graf").innerHTML = "";
-
 	var g = new Graph();
 	var layouter = new Graph.Layout.Spring(g);
 	var renderer = new Graph.Renderer.Raphael("graf", g, width, height);
