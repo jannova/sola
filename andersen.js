@@ -134,6 +134,8 @@ function narisi_graf () {
 	var div_graf = document.getElementById("graf");
 	var prejsni_graf = (div_graf.childNodes.length)? div_graf.childNodes[0] : undefined;
 
+	consoe.log (prejsni_graf);
+
 	if (prejsni_graf)
 		div_graf.removeChild(prejsni_graf);
 
@@ -168,5 +170,3 @@ function andersen () {
 
 	narisi_graf ();
 }
-
-window.onload = andersen;
