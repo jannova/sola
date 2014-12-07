@@ -119,6 +119,26 @@ function rekurzivno_zdruzevanje (a, stopnja, unija) {
 	return sprememba;
 }
 
+var narisi_graf;
+
+window.onload = function () {
+	var g = new Graph();
+	var layouter = new Graph.Layout.Spring(g);
+	layouter.layout();
+	var renderer = new Graph.Renderer.Spring("graf", g, 400, 400);
+	renderer.draw();
+	
+	narisi_graf = function () {
+		for (var i = 0; i < kazalna_tabela.length; i++)
+			for (var j = 0; j < kazalna_tabela.length; j++)
+				if (kazalna_tabela[i][j])
+					g.addEdge(tabela_spremenljivka_ime[i], tabela_spremenljivka_ime[j]);
+
+		layouter.layout();
+		renderer.draw();
+	};
+};
+
 function andersen () {
 	prevedi_sintakso ();
 	pripravi_kazalno_tabelo ();
@@ -134,27 +154,4 @@ function andersen () {
 	}
 	
 	narisi_graf ();
-}
-
-var g;
-var __narisi_graf;
-
-window.onload = function () {
-	g = new Graph();
-	var layouter = new Graph.Layout.Spring(g);
-	var renderer = new Graph.Renderer.Spring("graf", g, 400, 400);
-	
-	__narisi_graf = function () {
-		layouter.layout();
-		renderer.draw();
-	};
-};
-
-function narisi_graf () {
-	for (var i = 0; i < kazalna_tabela.length; i++)
-		for (var j = 0; j < kazalna_tabela.length; j++)
-			if (kazalna_tabela[i][j])
-				g.addEdge(tabela_spremenljivka_ime[i], tabela_spremenljivka_ime[j]);
-
-	__narisi_graf();
 }
