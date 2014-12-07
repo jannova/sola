@@ -56,6 +56,8 @@ function prevedi_sintakso () {
 
 		stavki.push(new Stavek(x_stopnja, x, y_stopnja, y));
 	}
+	
+	return true;
 }
 
 var kazalna_tabela;
@@ -131,7 +133,6 @@ var height = 400;
 var width = 400;
 
 function narisi_graf () {
-
 	var g = new Graph();
 	var layouter = new Graph.Layout.Spring(g);
 	var renderer = new Graph.Renderer.Raphael("graf", g, width, height);
