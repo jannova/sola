@@ -136,17 +136,24 @@ function andersen () {
 	narisi_graf ();
 }
 
+var g;
+
 function narisi_graf () {
-	var vozlisca = new Array(tabela_spremenljivka_ime.length);
-	var povezave = [];
-	
-	for (var i = 0; i < tabela_spremenljivka_ime.length; i++)
-		vozlisca[i] = {data: {id: i.toString(), name: tabela_spremenljivka_ime[i]}};
-	
 	for (var i = 0; i < kazalna_tabela.length; i++)
 		for (var j = 0; j < kazalna_tabela.length; j++)
 			if (kazalna_tabela[i][j])
-				povezave.push({data: {source: i.toString(), target: j.toString()}});
+				g.addEdge(tabela_spremenljivka_ime[i], tabela_spremenljivka_ime[j]);
+
+	__narisi_graf();
+}
+
+window.onload = function () {
+	g = new Graph();
+	var layouter = new Graph.Layout.Spring(g);
+	var renderer = new Graph.Renderer.Spring("graf", g, 400, 400);
 	
-	cytoscape ({container: document.getElementById("cy"), elements:{nodes: vozlisca, edges: povezave}})
+	__narisi_graf = function () {
+		layouter.layout();
+		renderer.draw();
+	}
 }
