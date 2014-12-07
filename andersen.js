@@ -163,7 +163,8 @@ function andersen () {
 				if (stavki[s])
 					sprememba = rekurzivno_zdruzevanje (stavki[s].x, stavki[s].x_stopnja, unija (stavki[s].y, stavki[s].y_stopnja))
 		}
-	}
+	} else
+		kazalna_tabela = [];
 
 	narisi_graf ();
 }
