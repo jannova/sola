@@ -137,6 +137,7 @@ function andersen () {
 }
 
 var g;
+var __narisi_graf;
 
 window.onload = function () {
 	g = new Graph();
