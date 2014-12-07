@@ -131,13 +131,6 @@ var height = 400;
 var width = 400;
 
 function narisi_graf () {
-	var div_graf = document.getElementById("graf");
-	var prejsni_graf = (div_graf.childNodes.length)? div_graf.childNodes[0] : undefined;
-
-	console.log (prejsni_graf);
-
-	if (prejsni_graf)
-		div_graf.removeChild(prejsni_graf);
 
 	var g = new Graph();
 	var layouter = new Graph.Layout.Spring(g);
@@ -150,6 +143,15 @@ function narisi_graf () {
 
 	layouter.layout();
 	renderer.draw();
+
+	var div_graf = document.getElementById("graf");
+	var prejsni_graf = (div_graf.childNodes.length == 2)? div_graf.childNodes[0] : undefined;
+
+	console.log (prejsni_graf);
+
+	if (prejsnji_graf)
+		div_graf.removeChild(prejsni_graf);
+
 };
 
 function andersen () {
