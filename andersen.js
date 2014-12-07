@@ -167,4 +167,4 @@ function andersen () {
 	narisi_graf ();
 }
 
-document.onload = andersen;
+window.onload = andersen;
