@@ -124,26 +124,21 @@ function rekurzivno_zdruzevanje (a, stopnja, unija) {
 	return sprememba;
 }
 
-var narisi_graf;
 var height = 400;
 var width = 400;
 
-window.onload = function () {
+function narisi_graf () {
 	var g = new Graph();
 	var layouter = new Graph.Layout.Spring(g);
-	layouter.layout();
 	var renderer = new Graph.Renderer.Raphael("graf", g, width, height);
-	renderer.draw();
-	
-	narisi_graf = function () {
-		for (var i = 0; i < kazalna_tabela.length; i++)
-			for (var j = 0; j < kazalna_tabela.length; j++)
-				if (kazalna_tabela[i][j])
-					g.addEdge(tabela_spremenljivka_ime[i], tabela_spremenljivka_ime[j], {directed: true});
 
-		layouter.layout();
-		renderer.draw();
-	};
+	for (var i = 0; i < kazalna_tabela.length; i++)
+		for (var j = 0; j < kazalna_tabela.length; j++)
+			if (kazalna_tabela[i][j])
+				g.addEdge(tabela_spremenljivka_ime[i], tabela_spremenljivka_ime[j], {directed: true});
+
+	layouter.layout();
+	renderer.draw();
 };
 
 function andersen () {
