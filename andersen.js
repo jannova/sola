@@ -50,8 +50,6 @@ function prevedi_sintakso () {
 		var y_stopnja = (sintakticni_elementi[4])? 0 : ((sintakticni_elementi[3])? sintakticni_elementi[3].length : 1);
 
 		stavki.push(new Stavek(x_stopnja, x, y_stopnja, y));
-		
-		console.log (stavki[stavki.length - 1]);
 	}
 }
 
@@ -128,6 +126,8 @@ var height = 400;
 var width = 400;
 
 function narisi_graf () {
+	document.getElementByID("graf").innerHTML = "";
+
 	var g = new Graph();
 	var layouter = new Graph.Layout.Spring(g);
 	var renderer = new Graph.Renderer.Raphael("graf", g, width, height);
