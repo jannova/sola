@@ -138,15 +138,6 @@ function andersen () {
 
 var g;
 
-function narisi_graf () {
-	for (var i = 0; i < kazalna_tabela.length; i++)
-		for (var j = 0; j < kazalna_tabela.length; j++)
-			if (kazalna_tabela[i][j])
-				g.addEdge(tabela_spremenljivka_ime[i], tabela_spremenljivka_ime[j]);
-
-	__narisi_graf();
-}
-
 window.onload = function () {
 	g = new Graph();
 	var layouter = new Graph.Layout.Spring(g);
@@ -155,5 +146,14 @@ window.onload = function () {
 	__narisi_graf = function () {
 		layouter.layout();
 		renderer.draw();
-	}
+	};
+};
+
+function narisi_graf () {
+	for (var i = 0; i < kazalna_tabela.length; i++)
+		for (var j = 0; j < kazalna_tabela.length; j++)
+			if (kazalna_tabela[i][j])
+				g.addEdge(tabela_spremenljivka_ime[i], tabela_spremenljivka_ime[j]);
+
+	__narisi_graf();
 }
