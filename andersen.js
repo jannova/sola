@@ -120,12 +120,14 @@ function rekurzivno_zdruzevanje (a, stopnja, unija) {
 }
 
 var narisi_graf;
+var height = 400;
+var width = 400;
 
 window.onload = function () {
 	var g = new Graph();
 	var layouter = new Graph.Layout.Spring(g);
 	layouter.layout();
-	var renderer = new Graph.Renderer.Raphael("graf", g, 400, 400);
+	var renderer = new Graph.Renderer.Raphael("graf", g, width, height);
 	renderer.draw();
 	
 	narisi_graf = function () {
