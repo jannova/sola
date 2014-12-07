@@ -126,6 +126,12 @@ var height = 400;
 var width = 400;
 
 function narisi_graf () {
+	var div_graf = document.getElementByID("graf");
+	var prejsni_graf = (div_graf.childNodes.length)? div_graf.childNodes[0] : undefined;
+
+	if (prejsni_graf)
+		div_graf.removeChild(prejsni_graf);
+
 	var g = new Graph();
 	var layouter = new Graph.Layout.Spring(g);
 	var renderer = new Graph.Renderer.Raphael("graf", g, width, height);
