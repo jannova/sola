@@ -29,7 +29,7 @@ function prevedi_sintakso () {
 	var koda = document.getElementById("vnosno_polje_za_kodo").value;
 	
 	if (!koda)
-		return;
+		return false;
 	
 	var goli_stavki = koda.split('\n');
 	
