@@ -139,7 +139,7 @@ window.onload = function () {
 		for (var i = 0; i < kazalna_tabela.length; i++)
 			for (var j = 0; j < kazalna_tabela.length; j++)
 				if (kazalna_tabela[i][j])
-					g.addEdge(tabela_spremenljivka_ime[i], tabela_spremenljivka_ime[j]);
+					g.addEdge(tabela_spremenljivka_ime[i], tabela_spremenljivka_ime[j], {directed: true});
 
 		layouter.layout();
 		renderer.draw();
