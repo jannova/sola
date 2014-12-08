@@ -92,7 +92,7 @@ function pripravi_kazalno_tabelo () {
 }
 
 function rekurzivna_unija (unija, a, stopnja) {
-	console.log ("{(" + tabela_spremenljivka_ime[a] + ", " + stopnja ")")
+	console.log ("{(" + tabela_spremenljivka_ime[a] + ", " + stopnja + ")");
 	
 	if (stopnja > 1)
 		for (var i = 0; i < kazalna_tabela.length; i++)
