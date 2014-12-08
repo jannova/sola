@@ -162,7 +162,7 @@ function andersen () {
 					
 					for (var i = 0; i < unija.length; i++)
 						if (unija[i])
-							console.log (tabela_spremenljivka_ime[i] + " ");
+							console.log (tabela_spremenljivka_ime[i]);
 					
 					sprememba = rekurzivno_zdruzevanje (stavki[s].x, stavki[s].x_stopnja, unija);
 				}
