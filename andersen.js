@@ -156,7 +156,14 @@ function andersen () {
 					for (var i = 0; i < unija.length; i++)
 						unija[i] = false;
 					
+					console.log (stavki[s]);
+					
 					rekurzivna_unija (stavki[s].y, stavki[s].y_stopnja, unija);
+					
+					for (var i = 0; i < unija.length; i++)
+						if (unija[i])
+							console.log (tabela_spremenljivka_ime[i] + " ");
+					
 					sprememba = rekurzivno_zdruzevanje (stavki[s].x, stavki[s].x_stopnja, unija);
 				}
 		}
