@@ -92,7 +92,7 @@ function pripravi_kazalno_tabelo () {
 }
 
 function rekurzivna_unija (unija, a, stopnja) {
-	if (stopnja == 1)
+	if (stopnja > 1)
 		for (var i = 0; i < kazalna_tabela.length; i++)
 			if (kazalna_tabela[a][i])
 				rekurzivna_unija (unija, i, stopnja - 1);
@@ -105,7 +105,7 @@ function rekurzivna_unija (unija, a, stopnja) {
 function rekurzivno_zdruzevanje (a, stopnja, unija) {
 	var sprememba = false;
 	
-	if (stopnja == 1)
+	if (stopnja > 1)
 		for (var i = 0; i < kazalna_tabela.length; i++)
 			if (kazalna_tabela[a][i])
 				sprememba = sprememba || rekurzivno_zdruzevanje (i, stopnja - 1, unija);
