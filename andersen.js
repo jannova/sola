@@ -115,13 +115,23 @@ function rekurzivno_zdruzevanje (unija, a, stopnja) {
 		for (var i = 0; i < kazalna_tabela.length; i++)
 			if (kazalna_tabela[a][i])
 				sprememba = sprememba || rekurzivno_zdruzevanje (unija, i, stopnja - 1);
-	else
+	else {
+		console.log ("<");
+		
 		for (var i = 0; i < kazalna_tabela.length; i++)
-			if (unija[i])
+			if (unija[i]) {
+				console.log (tabela_spremenljivka_ime[i]);
+				
 				if (!kazalna_tabela[a][i]) {
+					console.log ("!SPREMEMBA!");
+					
 					kazalna_tabela[a][i] = true;
 					sprememba = true;
 				}
+			}
+
+		console.log (">");
+	}
 
 	console.log (sprememba + " }");
 
