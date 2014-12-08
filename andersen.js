@@ -102,16 +102,6 @@ function rekurzivna_unija (unija, a, stopnja) {
 				unija[i] = true;
 }
 
-function unija (a, stopnja) {
-	var unija = new Array(kazalna_tabela.length);
-	
-	for (var i = 0; i < unija.length; i++)
-		unija[i] = false;
-	
-	rekurzivna_unija (unija, a, stopnja);
-	return unija;
-}
-
 function rekurzivno_zdruzevanje (a, stopnja, unija) {
 	var sprememba = false;
 	
@@ -160,8 +150,15 @@ function andersen () {
 			sprememba = false;
 		
 			for (var s = 0; s < stavki.length; s++)
-				if (stavki[s])
-					sprememba = rekurzivno_zdruzevanje (stavki[s].x, stavki[s].x_stopnja, unija (stavki[s].y, stavki[s].y_stopnja))
+				if (stavki[s]) {
+					var unija = new Array(kazalna_tabela.length);
+					
+					for (var i = 0; i < unija.length; i++)
+						unija[i] = false;
+					
+					rekurzivna_unija (stavki[s].y, stavki[s].y_stopnja, unija);
+					sprememba = rekurzivno_zdruzevanje (stavki[s].x, stavki[s].x_stopnja, unija);
+				}
 		}
 	} else
 		kazalna_tabela = [];
