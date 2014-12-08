@@ -92,6 +92,8 @@ function pripravi_kazalno_tabelo () {
 }
 
 function rekurzivna_unija (unija, a, stopnja) {
+	console.log ("{" + tabela_ime_spremenljivka[a])
+	
 	if (stopnja > 1)
 		for (var i = 0; i < kazalna_tabela.length; i++)
 			if (kazalna_tabela[a][i])
@@ -100,6 +102,8 @@ function rekurzivna_unija (unija, a, stopnja) {
 		for (var i = 0; i < kazalna_tabela.length; i++)
 			if (kazalna_tabela[a][i])
 				unija[i] = true;
+	
+	console.log ("}");
 }
 
 function rekurzivno_zdruzevanje (a, stopnja, unija) {
