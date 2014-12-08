@@ -107,7 +107,7 @@ function rekurzivna_unija (unija, a, stopnja) {
 }
 
 function rekurzivno_zdruzevanje (unija, a, stopnja) {
-	console.log ("{(" + tabela_spremenljivka_ime[a] + ", " + stopnja ")")
+	console.log ("{(" + tabela_spremenljivka_ime[a] + ", " + stopnja + ")")
 
 	
 	var sprememba = false;
