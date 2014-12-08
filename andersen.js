@@ -92,7 +92,7 @@ function pripravi_kazalno_tabelo () {
 }
 
 function rekurzivna_unija (unija, a, stopnja) {
-	console.log ("{" + tabela_spremenljivka_ime[a])
+	console.log ("{(" + tabela_spremenljivka_ime[a] + ", " + stopnja ")")
 	
 	if (stopnja > 1)
 		for (var i = 0; i < kazalna_tabela.length; i++)
@@ -107,6 +107,9 @@ function rekurzivna_unija (unija, a, stopnja) {
 }
 
 function rekurzivno_zdruzevanje (unija, a, stopnja) {
+	console.log ("{(" + tabela_spremenljivka_ime[a] + ", " + stopnja ")")
+
+	
 	var sprememba = false;
 	
 	if (stopnja > 1)
@@ -120,6 +123,9 @@ function rekurzivno_zdruzevanje (unija, a, stopnja) {
 					kazalna_tabela[a][i] = true;
 					sprememba = true;
 				}
+
+	console.log ("}");
+
 	return sprememba;
 }
 
@@ -162,11 +168,15 @@ function andersen () {
 					
 					console.log (stavki[s]);
 					
+					console.log ("unija");
+					
 					rekurzivna_unija (unija, stavki[s].y, stavki[s].y_stopnja);
 					
 					for (var i = 0; i < unija.length; i++)
 						if (unija[i])
 							console.log (tabela_spremenljivka_ime[i]);
+					
+					console.log ("zdruzevanje");
 					
 					sprememba = rekurzivno_zdruzevanje (unija, stavki[s].x, stavki[s].x_stopnja);
 				}
