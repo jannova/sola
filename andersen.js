@@ -162,7 +162,7 @@ function andersen () {
 					
 					console.log (stavki[s]);
 					
-					rekurzivna_unija (stavki[s].y, stavki[s].y_stopnja, unija);
+					rekurzivna_unija (unija, stavki[s].y, stavki[s].y_stopnja);
 					
 					for (var i = 0; i < unija.length; i++)
 						if (unija[i])
