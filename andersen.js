@@ -123,7 +123,7 @@ function rekurzivno_zdruzevanje (unija, a, stopnja) {
 					sprememba = true;
 				}
 
-	console.log ("}");
+	console.log (sprememba + " }");
 
 	return sprememba;
 }
