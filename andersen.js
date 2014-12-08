@@ -51,7 +51,7 @@ function prevedi_sintakso () {
 		if (y === undefined)
 			y = dodaj_ime (y_ime)
 		
-		var x_stopnja = (sintakticni_elementi[1])? sintakticni_elementi[1].length : 1;
+		var x_stopnja = (sintakticni_elementi[1])? (sintakticni_elementi[1].length + 1): 1;
 		var y_stopnja = (sintakticni_elementi[4])? 0 : ((sintakticni_elementi[3])? (sintakticni_elementi[3].length + 1): 1);
 
 		stavki.push(new Stavek(x_stopnja, x, y_stopnja, y));
