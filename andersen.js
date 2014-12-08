@@ -98,10 +98,12 @@ function rekurzivna_unija (unija, a, stopnja) {
 		for (var i = 0; i < kazalna_tabela.length; i++)
 			if (kazalna_tabela[a][i])
 				rekurzivna_unija (unija, i, stopnja - 1);
-	} else {
+	} else if (stopnja == 1) {
 		for (var i = 0; i < kazalna_tabela.length; i++)
 			if (kazalna_tabela[a][i])
 				unija[i] = true;
+	} else if (stopnja == 0) {
+		unija[a] = true;
 	}
 
 	console.log ("}");
